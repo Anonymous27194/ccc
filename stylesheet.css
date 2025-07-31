@@ -1,0 +1,231 @@
+@charset "utf-8";
+/* CSS Document */
+
+@keyframes fade_animation {
+	0% {opacity: 0%}
+	100% {opacity: 100%}
+}
+
+@keyframes typing {
+	0% {width: 0%}
+	100% {width: 90vw}
+}
+
+@keyframes blink-caret {
+	0% {border-right-color: transparent}
+	50% {border-right-color: white}
+	100% {border-right-color: transparent}
+}
+
+@keyframes fly-animation {
+	0% {position: relative;
+	    right: 20vw;}
+	100% {position: relative;
+	      right: 0vw;}
+}
+
+
+/* THIS OVERRIDES ANYTHING NOT SET TO A SPECIFIC ELEMENT - HIGHER SPECIFICITY */
+* {
+	font-family: "Trebuchet MS";
+	color:white;
+}
+
+body {
+	background-color: #242527;
+	background-image: url(IMG_4121.JPEG);
+	background-size: cover;
+}
+
+a {
+	text-decoration: none;
+	color:orange;
+}
+
+a:hover {
+	color:lightgray;
+}
+
+
+.on_background {
+	background-color: rgba(0, 0, 0, 0.8);
+	min-height: 98vh;
+}
+
+.content {
+	padding-left: 20px;
+}
+
+
+.emphasize {
+	color: orange;
+}
+
+.content_table {
+	column-width: 50%;
+	width: 100%;
+	table-layout: fixed;
+	color:aqua;
+	border-spacing: 10px;
+}
+
+/* Note this width is relative to td element - not entire page */
+.content_table tr td img {
+	width: 100%;
+	border-radius: 20px;
+	
+	transition: box-shadow 0.2s linear;
+}
+
+.content_table tr td img:hover {
+	box-shadow: 4px 4px 0px 0px rgba(255, 165, 0, 0.2);
+}
+
+.content_table tr td p {
+	font-size: 25px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 20px;
+	
+	transition: box-shadow 0.2s linear;
+}
+
+.content_table tr td p:hover {
+	box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+.typing_animation {
+	padding-top: 2vw;
+	padding-bottom: 1vw;
+	font-family: monospace;
+	display: inline-flex;
+	overflow: hidden;
+	white-space: nowrap;
+	margin: 0 auto;
+	letter-spacing: .15em;
+    animation: typing 2s steps(43, end) forwards,
+			   blink-caret 1s step-end infinite;
+	
+	text-align: left;
+	font-size: 3vw;
+	color: orange;
+	border-right: .15em solid white;
+}
+
+.fade_1 {
+	opacity: 0%;
+	animation: fade_animation 2s forwards,
+		       fly-animation 1s forwards;
+	color: orange;
+	font-size: 3vw;
+	position: relative;
+	margin-top: 2vw;
+}
+
+.fade_2 {
+	opacity: 0%;
+	animation-name: fade_animation;
+	animation-duration: 1s;
+	animation-delay: 500ms;
+	animation-fill-mode: forwards;
+}
+
+.fade_3 {
+	opacity: 0%;
+	animation-name: fade_animation;
+	animation-duration: 1s;
+	animation-delay: 1500ms;
+	animation-fill-mode: forwards;
+}
+
+
+.website_header {
+	border-spacing: 0px;
+	
+
+	max-height: 60px;
+
+	background-image: url("https://bpb-ca-c1.wpmucdn.com/mycentennial.sd43.bc.ca/dist/f/2812/files/2023/01/dots-6297146_1920.jpg");
+		
+	display: block;
+}
+
+
+.logo {
+	width: 20px;
+	justify-content: center;
+	
+	transition: box-shadow 0.2s linear;
+}
+
+.logo:hover {
+	box-shadow: 2px 2px 1px 0px orange;
+}
+
+.website_header_item {
+	white-space: nowrap;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: none;
+    color:white;
+	font-size: 20px;
+
+	display:inline-block;
+}
+
+.website_header_item:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.website_header_blankspace {
+    width: 100%;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.hover_link {
+	text-decoration: none;
+	color:rgb(200, 250, 255);
+	display:block;
+}
+
+.hover_link:hover {
+	color: white;
+}
+
+
+.dropdown {
+	position: relative;
+	text-decoration: none;
+	color:rgb(200, 250, 255);
+	display:inline-block;
+}
+
+.dropdown:hover {
+	color: white;
+}
+
+.dropdown:hover .dropdown-content {
+	display:block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.8);
+	min-width: 160px;
+	padding: 5px 5px;
+	z-index: 1;
+
+	transition: background-color 0.2s linear;
+}
+
+.dropdown-content:hover {
+	background-color: rgba(64, 64, 64, 0.8);
+}
+
+
