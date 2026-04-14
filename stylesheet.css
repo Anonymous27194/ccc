@@ -75,6 +75,8 @@ a:hover {
 	border-radius: 20px;
 	
 	transition: box-shadow 0.2s linear;
+
+	box-shadow: 4px 4px 0px 0px rgba(255, 165, 0, 0.05);
 }
 
 .content_table tr td img:hover {
@@ -92,11 +94,11 @@ a:hover {
 	
 	transition: box-shadow 0.2s linear;
 
-	box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.2);
+	box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.05);
 }
 
 .content_table tr td p:hover {
-	box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.05);
+	box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.2);
 }
 
 .typing_animation {
