@@ -91,6 +91,8 @@ a:hover {
 	border-radius: 20px;
 	
 	transition: box-shadow 0.2s linear;
+
+	box-shadow: 2px 2px 2px 2px rgba(255, 255, 255, 0.8);
 }
 
 .content_table tr td p:hover {
