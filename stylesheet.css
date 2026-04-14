@@ -99,10 +99,6 @@ a:hover {
 	box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.1);
 }
 
-.top_align_table tr td {
-	text-align: top;
-}
-
 .typing_animation {
 	padding-top: 2vw;
 	padding-bottom: 1vw;
