@@ -119,7 +119,6 @@ a:hover {
 	white-space: nowrap;
 	margin: 0 0; /*auto;*/
 	letter-spacing: 0.15em;
-	background-color: rgba(64, 64, 64, 0.8);
     animation: typing 2s steps(var(--intro-text-length), end) forwards,
 			   blink-caret 1s step-end infinite;
 	
