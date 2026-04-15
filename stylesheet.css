@@ -123,7 +123,7 @@ a:hover {
 			   blink-caret 1s step-end infinite;
 	
 	text-align: left;
-	font-size: calc(90vw * 1.12 / var(--intro-text-length));
+	font-size: calc(90vw * 1.35 / var(--intro-text-length));
 	color: orange;
 	border-right: .15em solid white;
 }
