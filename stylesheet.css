@@ -28,9 +28,9 @@
 :root {
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
 	--intro-text-vw-length: 80vw;
-	--default-rounding: 20px;
-    --main-rounding: 50px;
-	--drop-shadow-distance: 4px;
+	--default-rounding: 1vw;
+    --main-rounding: 2.5vw;
+	--drop-shadow-distance: 0.3vw;
 }
 
 
