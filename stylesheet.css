@@ -8,7 +8,7 @@
 
 @keyframes typing {
 	0% {width: 0}
-	100% {width: 90vw}
+	100% {width: var(--intro-text-vw-length)}
 }
 
 @keyframes blink-caret {
@@ -27,6 +27,7 @@
 
 :root {
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
+	--intro-text-vw-length: 80vw;
 	--default-rounding: 20px;
     --main-rounding: 50px;
 	--drop-shadow-distance: 4px;
@@ -123,7 +124,7 @@ a:hover {
 			   blink-caret 1s step-end infinite;
 	
 	text-align: left;
-	font-size: calc(90vw * 1.33 / var(--intro-text-length));/*calc(90vw * 1.4 / var(--intro-text-length));*/
+	font-size: calc(var(--intro-text-vw-length) * 1.33 / var(--intro-text-length));/*calc(90vw * 1.4 / var(--intro-text-length));*/
 	color: orange;
 	border-right: .15em solid white;
 }
