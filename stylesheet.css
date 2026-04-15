@@ -29,6 +29,7 @@
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
 	--default-rounding: 20px;
     --main-rounding: 50px;
+	--drop-shadow-distance: 4px;
 }
 
 
@@ -86,11 +87,11 @@ a:hover {
 	
 	transition: box-shadow 0.2s linear;
 
-	box-shadow: 4px 4px 0px 0px rgba(255, 165, 0, 0.05);
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 165, 0, 0.05);
 }
 
 .content_table tr td img:hover {
-	box-shadow: 4px 4px 0px 0px rgba(255, 165, 0, 0.2);
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 165, 0, 0.2);
 }
 
 .content_table tr td p {
@@ -101,11 +102,11 @@ a:hover {
 	
 	transition: box-shadow 0.2s linear;
 
-	box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.05);
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
 }
 
 .content_table tr td p:hover {
-	box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.2);
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.2);
 }
 
 .typing_animation {
@@ -116,7 +117,7 @@ a:hover {
 	overflow: hidden;
 	white-space: nowrap;
 	margin: 0 auto;
-	letter-spacing: .15em;
+	letter-spacing: 0.15em;
 	background-color: rgba(64, 64, 64, 0.8);
     animation: typing 2s steps(var(--intro-text-length), end) forwards,
 			   blink-caret 1s step-end infinite;
