@@ -27,6 +27,7 @@
 
 :root {
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
+	--default-rounding: 20px;
 }
 
 
@@ -115,11 +116,12 @@ a:hover {
 	white-space: nowrap;
 	margin: 0 auto;
 	letter-spacing: .15em;
+	background-color: rgba(64, 64, 64, 0.8);
     animation: typing 2s steps(var(--intro-text-length), end) forwards,
 			   blink-caret 1s step-end infinite;
 	
 	text-align: left;
-	font-size: calc(90vw / 1.15 / var(--intro-text-length));
+	font-size: calc(100% / 1.15 / var(--intro-text-length));
 	color: orange;
 	border-right: .15em solid white;
 }
