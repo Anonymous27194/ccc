@@ -7,7 +7,7 @@
 }
 
 @keyframes typing {
-	0% {width: 0%}
+	0% {width: 0}
 	100% {width: 90vw}
 }
 
@@ -123,7 +123,7 @@ a:hover {
 			   blink-caret 1s step-end infinite;
 	
 	text-align: left;
-	font-size: calc(90vw / 1.15 / var(--intro-text-length));
+	font-size: calc(90vw / 1.15);
 	color: orange;
 	border-right: .15em solid white;
 }
