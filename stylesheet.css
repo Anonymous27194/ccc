@@ -175,8 +175,11 @@ a:hover {
 	width: 20px;
 	justify-content: center;
 	transition: box-shadow 0.2s linear;
+}
+
+.logo img {
 	padding-left: var(--default-rounding);
-	padding-right: var(var(--default-rounding));
+	padding-right: var(--default-rounding);
 }
 
 .logo:hover {
