@@ -177,7 +177,7 @@ a:hover {
 	transition: box-shadow 0.2s linear;
 }
 
-.logo img {
+.logo_container {
 	padding-left: var(--default-rounding);
 	padding-right: var(--default-rounding);
 }
