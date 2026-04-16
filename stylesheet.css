@@ -162,6 +162,7 @@ a:hover {
 	max-height: 60px;
 	background-image: url("https://bpb-ca-c1.wpmucdn.com/mycentennial.sd43.bc.ca/dist/f/2812/files/2023/01/dots-6297146_1920.jpg");
 	display: block;
+	transition: box-shadow 0.2s linear;
 }
 
 .website_header:hover {
@@ -171,7 +172,6 @@ a:hover {
 .logo {
 	width: 20px;
 	justify-content: center;
-	border-radius: calc(var(--default-rounding) / 2);
 	transition: box-shadow 0.2s linear;
 }
 
@@ -185,6 +185,7 @@ a:hover {
 	background-color: none;
     color:white;
 	font-size: 20px;
+	border-radius: calc(var(--default-rounding) / 2);
 
 	display:inline-block;
 }
