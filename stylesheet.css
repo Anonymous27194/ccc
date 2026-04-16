@@ -171,16 +171,6 @@ a:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0 0 rgba(127, 159, 255, 0.2);
 }
 
-.logo {
-	width: 20px;
-	justify-content: center;
-	transition: box-shadow 0.2s linear;
-}
-
-.logo_container {
-	padding-left: var(--default-rounding);
-	padding-right: var(--default-rounding);
-}
 
 .logo:hover {
 	box-shadow: 2px 2px 1px 0px orange;
@@ -205,6 +195,18 @@ a:hover {
 .website_header_blankspace {
     width: 100%;
 	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+	width: 20px;
+	justify-content: center;
+	transition: box-shadow 0.2s linear;
+}
+
+.logo_container {
+	display: block;
+	padding-left: var(--default-rounding);
+	padding-right: var(--default-rounding);
 }
 
 .hover_link {
