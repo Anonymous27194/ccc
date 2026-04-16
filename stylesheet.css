@@ -205,9 +205,8 @@ a:hover {
 
 .logo_container {
 	display: block;
-	padding-left: calc(var(--default-rounding));
-	padding-right: calc(var(--default-rounding));
-	aspect-ratio: 1 / 1;
+	padding-left: calc(var(--default-rounding) * 0.8);
+	padding-right: calc(var(--default-rounding) * 0.8);
 }
 
 .hover_link {
