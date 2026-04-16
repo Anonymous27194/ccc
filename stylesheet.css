@@ -163,6 +163,7 @@ a:hover {
 	background-image: url("https://bpb-ca-c1.wpmucdn.com/mycentennial.sd43.bc.ca/dist/f/2812/files/2023/01/dots-6297146_1920.jpg");
 	display: block;
 	transition: box-shadow 0.2s linear;
+	align-items: center;
 }
 
 .website_header:hover {
