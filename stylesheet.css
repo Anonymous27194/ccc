@@ -159,7 +159,7 @@ a:hover {
 	border-spacing: 0px;
 	padding: 10px;
 	border-radius: var(--default-rounding);
-	max-height: 60px;
+	max-height: 80px;
 	background-image: url("https://bpb-ca-c1.wpmucdn.com/mycentennial.sd43.bc.ca/dist/f/2812/files/2023/01/dots-6297146_1920.jpg");
 	display: block;
 	transition: box-shadow 0.2s linear;
@@ -184,7 +184,8 @@ a:hover {
 	padding:5px;
 	background-color: none;
     color:white;
-	font-size: 3vw;
+	font-size: 1.5vw;
+	max-height: fit-content;
 	border-radius: calc(var(--default-rounding) / 2);
 
 	display:inline-block;
