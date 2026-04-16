@@ -232,6 +232,7 @@ a:hover {
 	min-width: 160px;
 	padding: 5px 5px;
 	z-index: 1;
+	border-radius: calc(var(--default-rounding) / 2);
 
 	transition: background-color 0.2s linear;
 }
