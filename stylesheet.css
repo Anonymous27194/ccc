@@ -178,7 +178,7 @@ a:hover {
 
 .website_header_item {
 	white-space: nowrap;
-	padding:5px;
+	padding: calc(var(--default-rounding)/4);
 	background-color: none;
     color:white;
 	font-size: 1.5vw;
@@ -205,8 +205,8 @@ a:hover {
 
 .logo_container {
 	display: block;
-	padding-left: var(--default-rounding);
-	padding-right: var(--default-rounding);
+	padding-left: var(--default-rounding)/2;
+	padding-right: var(--default-rounding)/2;
 }
 
 .hover_link {
