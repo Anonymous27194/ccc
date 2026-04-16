@@ -161,7 +161,8 @@ a:hover {
 	border-radius: var(--default-rounding);
 	max-height: 80px;
 	background-image: url("https://bpb-ca-c1.wpmucdn.com/mycentennial.sd43.bc.ca/dist/f/2812/files/2023/01/dots-6297146_1920.jpg");
-	display: block;
+	/*display: block;*/
+	display:flex;
 	transition: box-shadow 0.2s linear;
 	align-items: center;
 }
