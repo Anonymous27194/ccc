@@ -207,6 +207,7 @@ a:hover {
 	display: block;
 	padding-left: calc(var(--default-rounding));
 	padding-right: calc(var(--default-rounding));
+	aspect-ratio: 1 / 1;
 }
 
 .hover_link {
