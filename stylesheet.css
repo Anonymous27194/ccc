@@ -28,9 +28,13 @@
 :root {
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
 	--intro-text-vw-length: 80vw;
-	--default-rounding: 1vw;
+	--default-rounding: calc(0.75 * 1vw + 0.25 * 25px);
     --main-rounding: 2.5vw;
 	--drop-shadow-distance: 0.3vw;
+
+	--font-size-header-item: calc(36px * 0.25 + 1.5vw * 0.75);
+	--font-size-title: calc((3vw + 40px)/2);
+	--font-size-parargaph: calc((2vw + 25px)/2);
 }
 
 
@@ -96,7 +100,7 @@ a:hover {
 }
 
 .content_table tr td p {
-	font-size: 25px;
+	font-size: var(--font-size-parargaph);
 	padding: 20px;
 	background-color: rgba(0, 0, 0, 0.2);
 	border-radius: var(--default-rounding);
@@ -133,7 +137,7 @@ a:hover {
 	animation: fade_animation 2s forwards,
 		       fly-animation 1s forwards;
 	color: orange;
-	font-size: 3vw;
+	font-size: var(--font-size-title);
 	position: relative;
 	margin-top: 2vw;
 }
@@ -181,11 +185,14 @@ a:hover {
 	padding: calc(var(--default-rounding)/4);
 	background-color: none;
     color:white;
-	font-size: 1.5vw;
+	font-size: var(--font-size-header-item);
 	max-height: fit-content;
 	border-radius: calc(var(--default-rounding) / 2);
 
+	max-width: 20vw;
+
 	display:inline-block;
+	overflow:hidden;
 }
 
 .website_header_item:hover {
@@ -205,6 +212,7 @@ a:hover {
 
 .logo_container {
 	display: block;
+	justify-content: center;
 	padding-left: calc(var(--default-rounding) * 0.8);
 	padding-right: calc(var(--default-rounding) * 0.8);
 }
@@ -223,8 +231,9 @@ a:hover {
 .dropdown {
 	position: relative;
 	text-decoration: none;
-	color:rgb(200, 250, 255);
-	display:inline-block;
+	color: rgb(200, 250, 255);
+	display: inline-block;
+	overflow: visible;
 }
 
 .dropdown:hover {
