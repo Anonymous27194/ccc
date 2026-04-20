@@ -30,11 +30,16 @@
 	--intro-text-vw-length: 80vw;
 	--default-rounding: calc(0.75 * 1vw + 0.25 * 25px);
     --main-rounding: 2.5vw;
-	--drop-shadow-distance: 0.3vw;
+	--drop-shadow-distance: calc((0.3vw + 4px) / 2);
 
 	--font-size-header-item: calc(36px * 0.25 + 1.5vw * 0.75);
 	--font-size-title: calc((3vw + 40px)/2);
 	--font-size-parargaph: calc((2vw + 25px)/2);
+
+	--background-colour: rgb(0, 8, 16);
+	--background-colour-r:0;
+	--background-colour-g:8;
+	--background-colour-b:16;
 }
 
 
@@ -49,6 +54,7 @@ body {
 	background-color: #242527;
 	background-image: url(IMG_4121.JPEG);
 	background-size: cover;
+	
 }
 
 a {
@@ -62,10 +68,11 @@ a:hover {
 
 
 .on_background {
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgb(var(--background-colour-r) var(--background-colour-g) var(--background-colour-b) / 0.9);
 	min-height: 98vh;
 	border-radius: var(--main-rounding);
 	padding: calc(var(--main-rounding) - var(--default-rounding));
+	box-shadow: 0px 0px 0px 50px rgba(0,0,0,0.5);
 }
 
 .content {
@@ -85,14 +92,17 @@ a:hover {
 	border-spacing: 10px;
 }
 
+
+
 /* Note this width is relative to td element - not entire page */
 .content_table tr td img {
 	width: 100%;
 	border-radius: var(--default-rounding);
 	
-	transition: box-shadow 0.2s linear;
+	transition: box-shadow 0.2s linear;	
 
-	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 165, 0, 0.05);
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
+
 }
 
 .content_table tr td img:hover {
@@ -108,15 +118,19 @@ a:hover {
 	transition: box-shadow 0.2s linear;
 
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
+	
 }
 
 .content_table tr td p:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.2);
 }
 
-.typing_animation {
+.typing_animation_container {
 	padding-top: 2vw;
-	padding-bottom: 1vw;
+	padding-bottom: 2vw;
+}
+
+.typing_animation {
 	font-family: courier ; /*monospace;*/
 	display: inline-flex;
 	overflow: hidden;
@@ -164,7 +178,7 @@ a:hover {
 	padding: 10px;
 	border-radius: var(--default-rounding);
 	max-height: 80px;
-	background-image: url("https://bpb-ca-c1.wpmucdn.com/mycentennial.sd43.bc.ca/dist/f/2812/files/2023/01/dots-6297146_1920.jpg");
+	background-image: url("dots-6297146_1920.jpg");
 	/*display: block;*/
 	display:flex;
 	transition: box-shadow 0.2s linear;
