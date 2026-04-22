@@ -40,14 +40,41 @@
 	--background-colour-r:0;
 	--background-colour-g:8;
 	--background-colour-b:16;
+	--background-colour-a:0.9;
+
+	--default-text-colour: rgb(255, 255, 255);
+	--top-link-colour: rgb(200, 250, 255);
+	--top-link-hover-colour: white;
+	--highlight-text-colour: orange;
+	--dropdown-content-bg-colour: rgba(0, 0, 0, 0.8);
+	--dropdown-content-bg-hover-colour: rgba(64, 64, 64, 0.8);
 }
 
+
+@media (prefers-color-scheme: light) {
+
+	:root {
+		--background-colour: rgb(255, 255, 255);
+		--background-colour-r: 255;
+		--background-colour-g: 255;
+		--background-colour-b: 255;
+		--background-colour-a: 0.5;
+
+		--default-text-colour: rgb(0, 0, 0);
+		--top-link-colour: black;
+		--top-link-hover-colour: slategray;
+		--highlight-text-colour: green;
+		--dropdown-content-bg-colour: rgba(255, 255, 255, 0.8);
+		--dropdown-content-bg-hover-colour: rgba(191, 191, 191, 0.8);
+	}
+
+}
 
 
 /* THIS OVERRIDES ANYTHING NOT SET TO A SPECIFIC ELEMENT - HIGHER SPECIFICITY */
 * {
 	font-family: "Trebuchet MS";
-	color:white;
+	color:var(--default-text-colour);
 }
 
 body {
@@ -59,7 +86,7 @@ body {
 
 a {
 	text-decoration: none;
-	color:orange;
+	color:var(--highlight-text-colour);
 }
 
 a:hover {
@@ -68,17 +95,12 @@ a:hover {
 
 
 .on_background {
-	background-color: rgb(var(--background-colour-r) var(--background-colour-g) var(--background-colour-b) / 0.9);
+	background-color: rgb(var(--background-colour-r) var(--background-colour-g) var(--background-colour-b) / var(--background-colour-a));
 	min-height: 98vh;
 	border-radius: var(--main-rounding);
 	padding: calc(var(--main-rounding) - var(--default-rounding));
 	box-shadow: 0px 0px 0px 50px rgba(0,0,0,0.5);
-}
-
-@media (prefers-color-scheme: light) {
-	.on_background {
-		background-color: rgb(200 225 240 / 0.3);
-	}
+	transition: background-color 1s linear;
 }
 
 .content {
@@ -87,7 +109,7 @@ a:hover {
 
 
 .emphasize {
-	color: orange;
+	color: var(--highlight-text-colour);
 }
 
 .content_table {
@@ -148,7 +170,7 @@ a:hover {
 	
 	text-align: left;
 	font-size: calc(var(--intro-text-vw-length) * 1.33 / var(--intro-text-length));/*calc(90vw * 1.4 / var(--intro-text-length));*/
-	color: orange;
+	color: var(--highlight-text-colour);
 	border-right: .15em solid white;
 }
 
@@ -156,12 +178,11 @@ a:hover {
 	opacity: 0%;
 	animation: fade_animation 2s forwards,
 		       fly-animation 1s forwards;
-	color: orange;
+	color: var(--highlight-text-colour);
 	font-size: var(--font-size-title);
 	position: relative;
 	margin-top: 2vw;
 }
-
 .fade_2 {
 	opacity: 0%;
 	animation-name: fade_animation;
@@ -169,7 +190,6 @@ a:hover {
 	animation-delay: 500ms;
 	animation-fill-mode: forwards;
 }
-
 .fade_3 {
 	opacity: 0%;
 	animation-name: fade_animation;
@@ -184,12 +204,16 @@ a:hover {
 	padding: 10px;
 	border-radius: var(--default-rounding);
 	max-height: 80px;
-	background-image: url("dots-6297146_1920.jpg");
+	background-image: url("geometric_dark.jpg");
 	/*display: block;*/
 	display:flex;
-	transition: box-shadow 0.2s linear;
+	transition:
+	box-shadow 0.2s linear,
+	background-image 1s linear;
 	align-items: center;
 }
+
+
 
 .website_header:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0 0 rgba(127, 159, 255, 0.2);
@@ -197,7 +221,7 @@ a:hover {
 
 
 .logo:hover {
-	box-shadow: 2px 2px 1px 0px orange;
+	box-shadow: 2px 2px 1px 0px var(--highlight-text-colour);
 }
 
 .website_header_item {
@@ -220,7 +244,7 @@ a:hover {
 }
 
 .website_header_separator { 
-	border: 1px solid rgba(255, 255, 255, 1);
+	border: 1px solid var(--default-text-colour);
 	height: calc(1cqh + var(--default-rounding));
 	margin: calc(var(--default-rounding) / 2);
 }
@@ -245,29 +269,29 @@ a:hover {
 
 .hover_link {
 	text-decoration: none;
-	color:rgb(200, 250, 255);
+	color: var(--top-link-colour);
 	display:block;
 }
 
 .hover_link:hover {
-	color: white;
+	color: var(--top-link-hover-colour);
 }
 
 .main_link {
-	color: orange;
+	color: var(--highlight-text-colour);
 }
 
 
 .dropdown {
 	position: relative;
 	text-decoration: none;
-	color: rgb(200, 250, 255);
+	color: var(--top-link-colour);
 	display: inline-block;
 	overflow: visible;
 }
 
 .dropdown:hover {
-	color: white;
+	color: var(--top-link-hover-colour);
 }
 
 .dropdown:hover .dropdown-content {
@@ -277,7 +301,7 @@ a:hover {
 .dropdown-content {
 	display: none;
 	position: absolute;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: var(--dropdown-content-bg-colour);
 	min-width: 160px;
 	padding: 5px 5px;
 	z-index: 1;
@@ -287,7 +311,14 @@ a:hover {
 }
 
 .dropdown-content:hover {
-	background-color: rgba(64, 64, 64, 0.8);
+	background-color: var(--dropdown-content-bg-hover-colour);
 }
 
 
+@media (prefers-color-scheme: light) {
+
+    .website_header {
+		background-image: url("geometric_light.jpg");
+	}
+
+}
