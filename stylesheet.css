@@ -33,14 +33,19 @@
 	--drop-shadow-distance: calc((0.3vw + 4px) / 2);
 
 	--font-size-header-item: calc(36px * 0.25 + 1.5vw * 0.75);
-	--font-size-title: calc((3vw + 40px)/2);
-	--font-size-parargaph: calc((2vw + 25px)/2);
+	--font-size-title: calc(3vw * 0.75 + 40px * 0.25);
+	--font-size-parargaph: calc(2vw * 0.75 + 25px * 0.25);
 
 	--background-colour: rgb(0, 8, 16);
 	--background-colour-r:0;
 	--background-colour-g:8;
 	--background-colour-b:16;
 	--background-colour-a:0.9;
+
+	--mini-background-colour-r: 0;
+	--mini-background-colour-g: 0;
+	--mini-background-colour-b: 0;
+	--mini-background-colour-a: 0.2;
 
 	--default-text-colour: rgb(255, 255, 255);
 	--top-link-colour: rgb(200, 250, 255);
@@ -60,10 +65,15 @@
 		--background-colour-b: 255;
 		--background-colour-a: 0.5;
 
+		--mini-background-colour-r: 255;
+		--mini-background-colour-g: 191;
+		--mini-background-colour-b: 127;
+		--mini-background-colour-a: 0.2;
+
 		--default-text-colour: rgb(0, 0, 0);
 		--top-link-colour: black;
 		--top-link-hover-colour: slategray;
-		--highlight-text-colour: green;
+		--highlight-text-colour: darkgreen;
 		--dropdown-content-bg-colour: rgba(255, 255, 255, 0.8);
 		--dropdown-content-bg-hover-colour: rgba(191, 191, 191, 0.8);
 	}
@@ -75,6 +85,7 @@
 * {
 	font-family: "Trebuchet MS";
 	color:var(--default-text-colour);
+
 }
 
 body {
@@ -100,6 +111,7 @@ a:hover {
 	border-radius: var(--main-rounding);
 	padding: calc(var(--main-rounding) - var(--default-rounding));
 	box-shadow: 0px 0px 0px 50px rgba(0,0,0,0.5);
+
 	transition: background-color 1s linear;
 }
 
@@ -116,10 +128,8 @@ a:hover {
 	column-width: 50%;
 	width: 100%;
 	table-layout: fixed;
-	color:aqua;
-	border-spacing: 10px;
+	border-spacing: var(--default-rounding);
 }
-
 
 
 /* Note this width is relative to td element - not entire page */
@@ -130,7 +140,6 @@ a:hover {
 	transition: box-shadow 0.2s linear;	
 
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
-
 }
 
 .content_table tr td img:hover {
@@ -139,14 +148,13 @@ a:hover {
 
 .content_table tr td p {
 	font-size: var(--font-size-parargaph);
-	padding: 20px;
-	background-color: rgba(0, 0, 0, 0.2);
+	padding: var(--default-rounding);
+	background-color: rgb(var(--mini-background-colour-r) var(--mini-background-colour-g) var(--mini-background-colour-b) / var(--mini-background-colour-a));
 	border-radius: var(--default-rounding);
 	
 	transition: box-shadow 0.2s linear;
 
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
-	
 }
 
 .content_table tr td p:hover {
@@ -154,12 +162,16 @@ a:hover {
 }
 
 .typing_animation_container {
-	padding-top: 2vw;
-	padding-bottom: 2vw;
+	margin-top: var(--main-rounding);
+	border: 1px solid var(--highlight-text-colour);
+	border-radius: var(--default-rounding);
+	padding: var(--default-rounding);
+	/*box-shadow: calc(0px - var(--drop-shadow-distance)) 0 0px 0px orange;*/
+	width: fit-content;
 }
 
 .typing_animation {
-	font-family: courier ; /*monospace;*/
+	font-family: courier; /*courier;*/ /*monospace;*/
 	display: inline-flex;
 	overflow: hidden;
 	white-space: nowrap;
@@ -201,7 +213,7 @@ a:hover {
 
 .website_header {
 	border-spacing: 0px;
-	padding: 10px;
+	padding: calc(var(--default-rounding) / 5) var(--default-rounding) calc(var(--default-rounding)/5) var(--default-rounding);
 	border-radius: var(--default-rounding);
 	max-height: 80px;
 	background-image: url("geometric_dark.jpg");
@@ -220,19 +232,17 @@ a:hover {
 }
 
 
-.logo:hover {
-	box-shadow: 2px 2px 1px 0px var(--highlight-text-colour);
-}
+
 
 .website_header_item {
 	white-space: nowrap;
-	padding: calc(var(--default-rounding)/2);
+	padding: calc(var(--default-rounding)/4);
 	background-color: none;
     color:white;
 	font-size: var(--font-size-header-item);
-	max-height: fit-content;
+	
 	border-radius: calc(var(--default-rounding) / 2);
-
+	max-height: fit-content;
 	max-width: 20vw;
 
 	display:inline-block;
@@ -255,16 +265,30 @@ a:hover {
 }
 
 .logo {
-	width: 20px;
-	justify-content: center;
-	transition: box-shadow 0.2s linear;
+	width: calc(1cqh + var(--default-rounding));
+	height: calc(1cqh + var(--default-rounding));
 }
 
 .logo_container {
 	display: block;
 	justify-content: center;
-	padding-left: calc(var(--default-rounding) * 0.8);
-	padding-right: calc(var(--default-rounding) * 0.8);
+
+	border-radius: calc(var(--default-rounding) * 0.5);
+
+	height: calc(1cqh + var(--default-rounding));
+	width: calc(1cqh + var(--default-rounding));
+
+	overflow:hidden;
+
+	font-size: 0;
+
+	box-shadow: 0px 0px 0px calc(var(--drop-shadow-distance)/2) rgb(255, 255, 255, 0.2);
+
+	transition: box-shadow 0.2s linear;
+}
+
+.logo_container:hover {
+	box-shadow: 0px 0px 0px calc(var(--drop-shadow-distance)/2) color-mix(in srgb, var(--highlight-text-colour), transparent 50%);
 }
 
 .hover_link {
