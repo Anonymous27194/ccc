@@ -29,10 +29,13 @@
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
 	--intro-text-vw-length: 80vw;
 	--default-rounding: calc(0.75 * 1vw + 0.25 * 25px);
-    --main-rounding: 2.5vw;
+    --main-rounding: calc(var(--default-rounding) * 2.5);
+	--header-rounding: calc(var(--default-rounding) * 1.5);
+	--header-item-rounding: calc(var(--default-rounding) * 0.5);
 	--drop-shadow-distance: calc((0.3vw + 4px) / 2);
+	--outer-spacing: calc(var(--default-rounding) * 0.5);
 
-	--font-size-header-item: calc(36px * 0.25 + 1.5vw * 0.75);
+	--font-size-header-item: calc(36px * 0.1 + 1.5vw * 0.9);
 	--font-size-title: calc(3vw * 0.75 + 40px * 0.25);
 	--font-size-parargaph: calc(2vw * 0.75 + 25px * 0.25);
 
@@ -53,6 +56,8 @@
 	--highlight-text-colour: orange;
 	--dropdown-content-bg-colour: rgba(0, 0, 0, 0.8);
 	--dropdown-content-bg-hover-colour: rgba(64, 64, 64, 0.8);
+
+	--short-transition_time: 0.2s;
 }
 
 
@@ -85,12 +90,12 @@
 * {
 	font-family: "Trebuchet MS";
 	color:var(--default-text-colour);
-
 }
 
 body {
 	background-image: url(IMG_4121.JPEG);
 	background-size: cover;
+	margin: var(--outer-spacing);
 }
 
 
@@ -98,6 +103,7 @@ body {
 a {
 	text-decoration: none;
 	color:var(--highlight-text-colour);
+	transition: color var(--short-transition_time);
 }
 
 a:hover {
@@ -105,18 +111,23 @@ a:hover {
 }
 
 
+
+
+
 .on_background {
 	background-color: rgb(var(--background-colour-r) var(--background-colour-g) var(--background-colour-b) / var(--background-colour-a));
 	min-height: 98vh;
 	border-radius: var(--main-rounding);
-	padding: calc(var(--main-rounding) - var(--default-rounding));
+	padding: calc(var(--main-rounding) - var(--header-rounding));
 	box-shadow: 0px 0px 0px 50px rgba(0,0,0,0.5);
 
 	transition: background-color 1s linear;
+
 }
 
 .content {
 	padding-left: var(--default-rounding);
+	margin-top: calc(1cqh + 2*var(--header-rounding) + var(--main-rounding));
 }
 
 
@@ -165,22 +176,29 @@ a:hover {
 	margin-top: var(--main-rounding);
 	border: 1px solid var(--highlight-text-colour);
 	border-radius: var(--default-rounding);
-	padding: var(--default-rounding);
+	padding:var(--default-rounding);
 	/*box-shadow: calc(0px - var(--drop-shadow-distance)) 0 0px 0px orange;*/
 	width: fit-content;
+	height: calc(var(--intro-text-vw-length) * 1.33 / var(--intro-text-length));
+
 }
 
 .typing_animation {
 	font-family: courier; /*courier;*/ /*monospace;*/
-	display: inline-flex;
+	display: inline-block;/*inline-flex;*/
 	overflow: hidden;
 	white-space: nowrap;
 	margin: 0 0; /*auto;*/
+	font-weight: bold;
+	
 	letter-spacing: 0.15em;
     animation: typing 1s steps(var(--intro-text-length), end) forwards,
 			   blink-caret 1s step-end infinite;
 	
-	text-align: left;
+
+	vertical-align: top;
+	height: calc(var(--intro-text-vw-length) * 1.33 / var(--intro-text-length));
+	
 	font-size: calc(var(--intro-text-vw-length) * 1.33 / var(--intro-text-length));/*calc(90vw * 1.4 / var(--intro-text-length));*/
 	color: var(--highlight-text-colour);
 	border-right: .15em solid white;
@@ -210,29 +228,57 @@ a:hover {
 	animation-fill-mode: forwards;
 }
 
-
 .website_header {
-	border-spacing: 0px;
-	padding: calc(var(--default-rounding) / 5) var(--default-rounding) calc(var(--default-rounding)/5) var(--default-rounding);
-	border-radius: var(--default-rounding);
-	max-height: 80px;
+	padding: calc(var(--header-rounding) - var(--header-item-rounding));
+	border-radius: var(--header-rounding);
+	min-width: calc(100vw - 2*var(--main-rounding) - 2*var(--outer-spacing));
+	height: calc(1cqh + var(--header-rounding) - var(--header-item-rounding));
+	/*background-image: url("geometric_dark.jpg");*/
+	/*display: block;*/
+	display:flex;
+	transition: box-shadow 0.2s linear;
+	align-items: center;
+
+	column-gap: calc(var(--font-size-header-item) / 3);
+	border: solid 1px color-mix(in srgb, var(--default-text-colour), transparent 50%);
+
+	position:fixed;
+	z-index: 13;
+}
+
+.website_header:hover {
+	box-shadow: 0 0 0 calc(var(--drop-shadow-distance) / 2) color-mix(in srgb, var(--highlight-text-colour), transparent 50%);
+}
+
+.website_header_background {
+	padding: calc(var(--header-rounding) - var(--header-item-rounding));
+	border-radius: var(--header-rounding);
+	min-width: calc(100vw - 2*var(--main-rounding) - 2*var(--outer-spacing));
+	height: calc(1cqh + var(--header-rounding) - var(--header-item-rounding));
 	background-image: url("geometric_dark.jpg");
 	/*display: block;*/
 	display:flex;
-	transition:
-	box-shadow 0.2s linear,
-	background-image 1s linear;
-	align-items: center;
+	transition:	background-image 1s linear;
+
+	position:fixed;
+	z-index: 12;
+
+	opacity: 30%;
 }
 
+.website_header_blur {
+	backdrop-filter: blur(100px);
+	height: calc(1cqh + var(--outer-spacing) + var(--main-rounding) + 2*var(--header-rounding));
 
-
-.website_header:hover {
-	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0 0 rgba(127, 159, 255, 0.2);
+	/*border-radius: var(--header-rounding);*/
+	min-width: 200vw;
+	border-bottom:1px solid var(--highlight-text-colour);
+	font-size: 1000px;
+	position: fixed;
+	left:-1vw;
+	top:0;
+	z-index: 11;
 }
-
-
-
 
 .website_header_item {
 	white-space: nowrap;
@@ -247,10 +293,16 @@ a:hover {
 
 	display:inline-block;
 	overflow:hidden;
+
+	transition: background-color var(--short-transition_time);
 }
 
 .website_header_item:hover {
 	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.website_header_item_main {
+	max-width: 25vw;
 }
 
 .website_header_separator { 
@@ -259,10 +311,17 @@ a:hover {
 	margin: calc(var(--default-rounding) / 2);
 }
 
+.website_header_spacer {
+	height: calc(1cqh + var(--default-rounding));
+	margin: calc(var(--default-rounding) / 2);
+}
+
 .website_header_blankspace {
     width: 100%;
 	background-color: rgba(0, 0, 0, 0.1);
 }
+
+
 
 .logo {
 	width: calc(1cqh + var(--default-rounding));
@@ -295,6 +354,7 @@ a:hover {
 	text-decoration: none;
 	color: var(--top-link-colour);
 	display:block;
+	transition: color var(--short-transition_time);
 }
 
 .hover_link:hover {
@@ -307,7 +367,6 @@ a:hover {
 
 
 .dropdown {
-	position: relative;
 	text-decoration: none;
 	color: var(--top-link-colour);
 	display: inline-block;
@@ -326,7 +385,6 @@ a:hover {
 	display: none;
 	position: absolute;
 	background-color: var(--dropdown-content-bg-colour);
-	min-width: 160px;
 	padding: 5px 5px;
 	z-index: 1;
 	border-radius: calc(var(--default-rounding) / 2);
@@ -341,7 +399,7 @@ a:hover {
 
 @media (prefers-color-scheme: light) {
 
-    .website_header {
+    .website_header_background {
 		background-image: url("geometric_light.jpg");
 	}
 
