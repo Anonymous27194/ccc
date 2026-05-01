@@ -396,11 +396,20 @@ a:hover {
 	background-color: var(--dropdown-content-bg-hover-colour);
 }
 
+.image_filter {
+	filter: none;
+	transition: filter 1s;
+}
+
 
 @media (prefers-color-scheme: light) {
 
     .website_header_background {
 		background-image: url("geometric_light.jpg");
+	}
+
+	.image_filter {
+		filter: hue-rotate(0.5turn) brightness(2.5) grayscale(0.3);
 	}
 
 }
