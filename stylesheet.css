@@ -2,36 +2,98 @@
 /* CSS Document */
 
 @keyframes fade_animation {
-	0% {opacity: 0%}
-	100% {opacity: 100%}
+	0%   {opacity: 0%;
+		  filter: blur(calc(var(--font-size-parargaph)));}
+	100% {opacity: 100%;
+	      filter: blur(0px);}
 }
 
 @keyframes typing {
-	0% {width: 0}
+	0%   {width: 0}
 	100% {width: var(--intro-text-vw-length)}
 }
 
 @keyframes blink-caret {
-	0% {border-right-color: transparent}
-	50% {border-right-color: white}
+	0%   {border-right-color: transparent}
+	50%  {border-right-color: white}
 	100% {border-right-color: transparent}
 }
 
 @keyframes fly-animation {
-	0% {position: relative;
-	    right: 20vw;}
+	0%   {position: relative;
+	      right:    20vw;}
 	100% {position: relative;
-	      right: 0vw;}
+	      right:    0vw;}
+}
+
+@keyframes drop-down-expand-animation {
+	0%   {display: block;
+		  opacity: 0%;
+		  height:  0;
+		  width:   0;}
+	100% {display: block;
+		  opacity: 100%;
+		  height:  auto;
+		  width:   auto;}
+}
+
+/* @keyframes drop-down-close-animation {
+	0%   {display: block;
+		  opacity: 100%;
+		  height: auto;
+		  width: auto;}
+	100% {display: block;
+		  opacity: 0%;
+		  height:  0;
+		  width:   0;}
+} */
+
+@keyframes image-expand-shrink-animation {
+	/* 0% {max-width: 10%;
+	    order: 2;}
+	8% {max-width: 70%;}
+	33.3% {max-width: 70%;
+	     order: 3;}
+	42% {max-width: 10%;}
+	66.7% {order: 1;}
+	100% {max-width: 10%;} */
+
+	/*0%  {order: 2;}
+	20% {order: 3;}
+	40% {order: 4;} 
+	60% {order: 0;}
+	80% {order: 1;} 
+	100% {order: 2;}*/
+
+
+	/*0%  {left: 20vw;}
+	20% {left: 30vw;}
+	40% {left: 40vw;} /*opacity: 100%;
+	60% {left: 0vw;} /*opacity: 20%;}
+	80% {left: 10vw;} /*opacity: 20%;}
+	100% {left: 20vw;} /*opacity: 100%;}*/
+
+	0% {opacity: 0%; height: 0;}
+	8.33% {opacity: 100%; height: auto;}
+	33.33% {opacity: 100%; height: auto;}
+	41.67% {opacity: 0%; height: 0;}
+	100% {opacity: 0%; height: 0;}
+
+
+	/* in 1s, stay 3s, out 1s for each; in/out transitions overlap so effective time is halved; 12s total */
 }
 
 
 :root {
+	interpolate-size: allow-keywords;
+
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
 	--intro-text-vw-length: 80vw;
 	--default-rounding: calc(0.75 * 1vw + 0.25 * 25px);
     --main-rounding: calc(var(--default-rounding) * 2.5);
 	--header-rounding: calc(var(--default-rounding) * 1.5);
 	--header-item-rounding: calc(var(--default-rounding) * 0.5);
+	--header-subitem-rounding: calc(var(--default-rounding) * 0.25);
 	--drop-shadow-distance: calc((0.3vw + 4px) / 2);
 	--outer-spacing: calc(var(--default-rounding) * 0.5);
 
@@ -57,13 +119,17 @@
 	--dropdown-content-bg-colour: rgba(0, 0, 0, 0.8);
 	--dropdown-content-bg-hover-colour: rgba(64, 64, 64, 0.8);
 
-	--short-transition_time: 0.2s;
+	--long-transition-time:   1s;
+	--medium-transition-time: 0.5s;
+	--short-transition-time:  0.2s;
+	--quick-transition-time:  0.1s;
 }
 
 
 @media (prefers-color-scheme: light) {
 
 	:root {
+
 		--background-colour: rgb(255, 255, 255);
 		--background-colour-r: 255;
 		--background-colour-g: 255;
@@ -103,15 +169,12 @@ body {
 a {
 	text-decoration: none;
 	color:var(--highlight-text-colour);
-	transition: color var(--short-transition_time);
+	transition: color var(--short-transition-time);
 }
 
 a:hover {
 	color:lightgray;
 }
-
-
-
 
 
 .on_background {
@@ -143,37 +206,61 @@ a:hover {
 }
 
 
-/* Note this width is relative to td element - not entire page */
+
+
+
+.content_table tr td > p, .photo_gallery {
+	font-size: var(--font-size-parargaph);
+	padding: var(--default-rounding);
+	background-color: rgb(var(--mini-background-colour-r) var(--mini-background-colour-g) var(--mini-background-colour-b) / var(--mini-background-colour-a));
+	border-radius: var(--default-rounding);
+
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
+	transition: box-shadow 0.2s linear;
+}
+
+.content_table tr td > p:hover {
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.2);
+}
+
 .content_table tr td img {
 	width: 100%;
 	border-radius: var(--default-rounding);
-	
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
+
+
 	transition: box-shadow 0.2s linear;	
 
-	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
 }
 
 .content_table tr td img:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 165, 0, 0.2);
 }
 
-.content_table tr td p {
-	font-size: var(--font-size-parargaph);
-	padding: var(--default-rounding);
-	background-color: rgb(var(--mini-background-colour-r) var(--mini-background-colour-g) var(--mini-background-colour-b) / var(--mini-background-colour-a));
-	border-radius: var(--default-rounding);
-	
-	transition: box-shadow 0.2s linear;
-
-	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
-}
-
-.content_table tr td p:hover {
-	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.2);
-}
-
 .typing_animation_container {
 	margin-top: var(--main-rounding);
+	/* border:1px solid white; */
+	width: fit-content;
+}
+
+/* .typing_animation_container::after {
+	content: "TEST";
+	background-image: url("geometric_dark.jpg");
+	width: calc(var(--intro-text-vw-length) + 2*var(--default-rounding) + 1px);
+	position: absolute;
+    top: var(--main-rounding);
+	margin-left: 1px;
+	font-size: 80px;
+	opacity: 50%;
+	z-index: -1;
+}
+
+.typing_animation_container.hover::after {
+	opacity: 100%;
+} */
+
+.typing_animation_box {
+
 	border: 1px solid var(--highlight-text-colour);
 	border-radius: var(--default-rounding);
 	padding:var(--default-rounding);
@@ -181,6 +268,14 @@ a:hover {
 	width: fit-content;
 	height: calc(var(--intro-text-vw-length) * 1.33 / var(--intro-text-length));
 
+	transition: border var(--short-transition-time) linear,
+				opacity var(--short-transition-time) linear;
+}
+
+.typing_animation_box:hover {
+	border: 1px solid color-mix(in srgb, var(--default-text-colour) 50%, transparent);
+	background-image: url(geometric_dark.jpg);
+	opacity: 80%;
 }
 
 .typing_animation {
@@ -190,7 +285,7 @@ a:hover {
 	white-space: nowrap;
 	margin: 0 0; /*auto;*/
 	font-weight: bold;
-	
+
 	letter-spacing: 0.15em;
     animation: typing 1s steps(var(--intro-text-length), end) forwards,
 			   blink-caret 1s step-end infinite;
@@ -202,6 +297,8 @@ a:hover {
 	font-size: calc(var(--intro-text-vw-length) * 1.33 / var(--intro-text-length));/*calc(90vw * 1.4 / var(--intro-text-length));*/
 	color: var(--highlight-text-colour);
 	border-right: .15em solid white;
+
+	opacity: 100%;
 }
 
 .fade_1 {
@@ -236,18 +333,23 @@ a:hover {
 	/*background-image: url("geometric_dark.jpg");*/
 	/*display: block;*/
 	display:flex;
-	transition: box-shadow 0.2s linear;
+
 	align-items: center;
 
 	column-gap: calc(var(--font-size-header-item) / 3);
 	border: solid 1px color-mix(in srgb, var(--default-text-colour), transparent 50%);
+	box-shadow: none;
 
 	position:fixed;
 	z-index: 13;
+
+	transition: box-shadow 0.2s linear,
+				border 0.2s linear;
 }
 
 .website_header:hover {
-	box-shadow: 0 0 0 calc(var(--drop-shadow-distance) / 2) color-mix(in srgb, var(--highlight-text-colour), transparent 50%);
+	box-shadow: 0 0 0 calc(var(--drop-shadow-distance) / 2) color-mix(in srgb, var(--default-text-colour), transparent 50%);
+	border: solid 1px rgba(0, 0, 0, 0) /* Transparent*/
 }
 
 .website_header_background {
@@ -258,12 +360,17 @@ a:hover {
 	background-image: url("geometric_dark.jpg");
 	/*display: block;*/
 	display:flex;
-	transition:	background-image 1s linear;
+
 
 	position:fixed;
 	z-index: 12;
 
 	opacity: 30%;
+	transition:	opacity var(--short-transition-time) linear;
+}
+
+header:hover .website_header_background {
+	opacity: 60%;
 }
 
 .website_header_blur {
@@ -294,7 +401,8 @@ a:hover {
 	display:inline-block;
 	overflow:hidden;
 
-	transition: background-color var(--short-transition_time);
+	transition: background-color var(--short-transition-time),
+	            max-width var(--short-transition-time);
 }
 
 .website_header_item:hover {
@@ -302,7 +410,7 @@ a:hover {
 }
 
 .website_header_item_main {
-	max-width: 25vw;
+	max-width: 28vw;
 }
 
 .website_header_separator { 
@@ -320,8 +428,6 @@ a:hover {
     width: 100%;
 	background-color: rgba(0, 0, 0, 0.1);
 }
-
-
 
 .logo {
 	width: calc(1cqh + var(--default-rounding));
@@ -354,7 +460,7 @@ a:hover {
 	text-decoration: none;
 	color: var(--top-link-colour);
 	display:block;
-	transition: color var(--short-transition_time);
+	transition: var(--short-transition-time);
 }
 
 .hover_link:hover {
@@ -377,29 +483,149 @@ a:hover {
 	color: var(--top-link-hover-colour);
 }
 
-.dropdown:hover .dropdown-content {
-	display:block;
-}
-
 .dropdown-content {
 	display: none;
 	position: absolute;
+	overflow: hidden;
 	background-color: var(--dropdown-content-bg-colour);
-	padding: 5px 5px;
+	padding: calc(var(--default-rounding)/4);
 	z-index: 1;
-	border-radius: calc(var(--default-rounding) / 2);
+	border-radius: var(--header-item-rounding);
+	top: calc(var(--header-rounding) + 2*var(--header-item-rounding) + 1px);
 
-	transition: background-color 0.2s linear;
+	transition: background-color var(--short-transition-time) linear;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+	opacity: 100%;
+
+	animation: var(--quick-transition-time) linear drop-down-expand-animation forwards;
 }
 
 .dropdown-content:hover {
 	background-color: var(--dropdown-content-bg-hover-colour);
 }
 
+.dropdown-content .hover_link {
+	border-radius: var(--header-subitem-rounding);
+	padding-left: calc(var(--header-subitem-rounding) / 2);
+	padding-right: calc(var(--header-subitem-rounding));
+
+	border: 1px solid rgba(0, 0, 0, 0);
+	transition: border var(--short-transition-time) linear,
+	            background-color var(--short-transition-time) linear,
+				padding-left var(--short-transition-time) linear,
+				padding-right var(--short-transition-time) linear;
+}
+
+.dropdown-content .hover_link:hover {
+	padding-left: calc(var(--header-subitem-rounding));
+	padding-right: calc(var(--header-subitem-rounding) / 2);
+	background-color: var(--dropdown-content-bg-hover-colour);
+	border: 1px solid color-mix(var(--highlight-text-colour), transparent 20%);
+}
+
 .image_filter {
 	filter: none;
-	transition: filter 1s;
+	transition: filter var(--long-transition-time);
 }
+
+.photo_gallery {
+	/*min-height: calc(30vw);
+	max-height: calc(30vw);
+	/* display: flex; */
+	/* flex-direction: row; */
+	padding: 0;
+	height: fit-content;
+	line-height:0;
+}
+
+.photo_gallery:hover {
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.2);
+}
+
+.photo_gallery .img_container {
+	overflow: hidden;
+	position: relative;
+	/*vertical-align: middle;
+	
+	/* display: inline-block;
+
+
+	border: 10px solid green;
+
+	/* align-content: center; 
+	justify-self: center;
+
+
+	left: 0;
+	right: 0;
+
+	width: calc(100%);
+	height: 100%;
+
+	overflow: hidden;
+	transition: max-width var(--short-transition-time) ease-in-out;
+	position: relative;
+	opacity: 0%;
+
+	margin-top: -50%;
+	transform: translate(0%, 50%) */
+	line-height: 0;
+}
+
+.img_container img {
+	box-shadow: none !important;
+	/*width: 100%;
+	position: absolute;
+
+	border: 1px solid white;
+
+
+	/* min-height: 300px;
+	max-height: 300px; */
+}
+
+.photo_gallery .img_container:nth-child(1) {
+	animation: 12s linear 0s infinite forwards image-expand-shrink-animation;
+	height: auto;
+	/* order:2; */
+
+}
+
+.photo_gallery .img_container:nth-child(2) {
+	animation: 12s linear 4s infinite forwards image-expand-shrink-animation;
+	height: 0;
+	/* order:4; */
+}
+
+.photo_gallery .img_container:nth-child(3) {
+	animation: 12s linear 8s infinite forwards image-expand-shrink-animation;
+	height: 0;/* order: 0; */
+}
+
+/* .photo_gallery .img_container {
+	min-width: 10px;
+	max-width: 10px;
+	height:10px;
+	margin-right:100px;
+	border: 1px solid green;
+}
+
+.photo_gallery .img_container img {
+	display: none;
+	/* position: absolute;
+	top:0px;
+	left:20px;
+	height:300px;
+	max-width: 20%;
+} */
+
+/* .photo_gallery .img_container:hover img {
+	display: inline-block;
+	max-width: 50%;
+} */
 
 
 @media (prefers-color-scheme: light) {
