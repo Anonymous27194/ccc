@@ -9,14 +9,14 @@
 }
 
 @keyframes typing {
-	0%   {width: 0}
-	100% {width: var(--intro-text-vw-length)}
+	0%   {width: 0;}
+	100% {width: var(--intro-text-vw-length);}
 }
 
 @keyframes blink-caret {
-	0%   {border-right-color: transparent}
-	50%  {border-right-color: white}
-	100% {border-right-color: transparent}
+	0%   {border-right-color: transparent;}
+	50%  {border-right-color: var(--default-text-colour);}
+	100% {border-right-color: transparent;}
 }
 
 @keyframes fly-animation {
@@ -86,22 +86,17 @@
 	--font-size-parargaph: calc(2vw * 0.75 + 25px * 0.25);
 
 	--background-colour: rgb(0, 8, 16);
-	--background-colour-r:0;
-	--background-colour-g:8;
-	--background-colour-b:16;
-	--background-colour-a:0.9;
-
-	--mini-background-colour-r: 0;
-	--mini-background-colour-g: 0;
-	--mini-background-colour-b: 0;
-	--mini-background-colour-a: 0.2;
+	--background-colour-a: 90%;
+	--mini-background-colour: rgb(0, 0, 0);
+	--mini-background-colour-a: 20%;
+	--dropdown-content-bg-colour: rgba(0, 0, 0, 0.8);
+	--dropdown-content-bg-hover-colour: rgba(64, 64, 64, 0.8);
 
 	--default-text-colour: rgb(255, 255, 255);
 	--top-link-colour: rgb(200, 250, 255);
 	--top-link-hover-colour: white;
 	--highlight-text-colour: orange;
-	--dropdown-content-bg-colour: rgba(0, 0, 0, 0.8);
-	--dropdown-content-bg-hover-colour: rgba(64, 64, 64, 0.8);
+	--link-hover-colour: lightgray;
 
 	--long-transition-time:   1s;
 	--medium-transition-time: 0.5s;
@@ -111,28 +106,20 @@
 
 
 @media (prefers-color-scheme: light) {
-
 	:root {
-
 		--background-colour: rgb(255, 255, 255);
-		--background-colour-r: 255;
-		--background-colour-g: 255;
-		--background-colour-b: 255;
-		--background-colour-a: 0.5;
-
-		--mini-background-colour-r: 255;
-		--mini-background-colour-g: 191;
-		--mini-background-colour-b: 127;
-		--mini-background-colour-a: 0.2;
+		--background-colour-a: 50%;
+		--mini-background-colour: lightblue;
+		--mini-background-colour-a: 30%;
+		--dropdown-content-bg-colour: rgba(255, 255, 255, 0.8);
+		--dropdown-content-bg-hover-colour: rgba(191, 191, 191, 0.8);
 
 		--default-text-colour: rgb(0, 0, 0);
 		--top-link-colour: black;
 		--top-link-hover-colour: slategray;
 		--highlight-text-colour: darkgreen;
-		--dropdown-content-bg-colour: rgba(255, 255, 255, 0.8);
-		--dropdown-content-bg-hover-colour: rgba(191, 191, 191, 0.8);
+		--link-hover-colour: slategray;
 	}
-
 }
 
 
@@ -157,12 +144,12 @@ a {
 }
 
 a:hover {
-	color:lightgray;
+	color: var(--link-hover-colour);
 }
 
 
 .on_background {
-	background-color: rgb(var(--background-colour-r) var(--background-colour-g) var(--background-colour-b) / var(--background-colour-a));
+	background-color: color-mix(var(--background-colour) var(--background-colour-a), black 0%);
 	min-height: 98vh;
 	border-radius: var(--main-rounding);
 	padding: calc(var(--main-rounding) - var(--header-rounding));
@@ -196,15 +183,17 @@ a:hover {
 .content_table tr td > p, .photo_gallery {
 	font-size: var(--font-size-parargaph);
 	padding: var(--default-rounding);
-	background-color: rgb(var(--mini-background-colour-r) var(--mini-background-colour-g) var(--mini-background-colour-b) / var(--mini-background-colour-a));
+	background-color: color-mix(var(--mini-background-colour) var(--mini-background-colour-a), black 0%);
 	border-radius: var(--default-rounding);
 
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
-	transition: box-shadow 0.2s linear;
+	transition: box-shadow var(--short-transition-time) linear,
+				background-color var(--short-transition-time) linear;
 }
 
 .content_table tr td > p:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.2);
+	background-color: color-mix(var(--mini-background-colour) calc(var(--mini-background-colour-a) * 2), black 0%);
 	/* padding: calc(var(--default-rounding) - 2px);
 	border: 2px solid color-mix(var(--highlight-text-colour), transparent 80%); */
 }
@@ -285,7 +274,7 @@ a:hover {
 	
 	font-size: calc(var(--intro-text-vw-length) * 1.33 / var(--intro-text-length));/*calc(90vw * 1.4 / var(--intro-text-length));*/
 	color: var(--highlight-text-colour);
-	border-right: .15em solid white;
+	border-right: .15em solid var(--default-text-colour);
 
 	opacity: 100%;
 }
@@ -393,12 +382,14 @@ header:hover .website_header_background {
 	z-index: 11;
 
 	transition: border-bottom-color var(--short-transition-time) linear,
-				backdrop-filter var(--short-transition-time) linear;
+				backdrop-filter var(--short-transition-time) linear,
+				box-shadow var(--short-transition-time) linear;
 }
 
 header:hover .website_header_blur {
 	border-bottom-color: var(--highlight-text-colour);
 	backdrop-filter: blur(20px);
+	box-shadow: 0 0 20vh 20vh color-mix(var(--background-colour) calc(var(--background-colour-a) * 0.5), black 0%);
 }
 
 .website_header_item {
@@ -603,7 +594,11 @@ header:hover .website_header_blur {
 	}
 
 	.image_filter {
-		filter: hue-rotate(0.5turn) brightness(2.5) grayscale(0.3);
+		filter: hue-rotate(0.9turn) brightness(2.5) grayscale(0.3);
+	}
+
+	.typing_animation_box:hover {
+		background-image: url("geometric_light.jpg");
 	}
 
 }
