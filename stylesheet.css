@@ -97,6 +97,7 @@
 	--top-link-hover-colour: white;
 	--highlight-text-colour: orange;
 	--link-hover-colour: lightgray;
+	--secondary-highlight-text-colour: lightblue;
 
 	--long-transition-time:   1s;
 	--medium-transition-time: 0.5s;
@@ -119,6 +120,7 @@
 		--top-link-hover-colour: slategray;
 		--highlight-text-colour: darkgreen;
 		--link-hover-colour: slategray;
+		--secondary-highlight-text-colour: blue;
 	}
 }
 
@@ -147,6 +149,17 @@ a:hover {
 	color: var(--link-hover-colour);
 }
 
+.a_element {
+	/* Fix default styling issues caused by default values of properties; change to <p> element defaults*/
+	/* DO NOT MOVE BELOW CUSTOM STYLES!!*/
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 0;
+	margin-right: 0;
+
+	color: var(--secondary-highlight-text-colour);
+}
 
 .on_background {
 	background-color: color-mix(var(--background-colour) var(--background-colour-a), black 0%);
@@ -176,11 +189,13 @@ a:hover {
 	border-spacing: var(--default-rounding);
 }
 
+.inside_table {
+	background-color: color-mix(var(--mini-background-colour) var(--mini-background-colour-a), black 0%);
+	border-radius: var(--default-rounding);
+	width: 100%;
+}
 
-
-
-
-.content_table tr td > p, .photo_gallery {
+.content_table tr td > p, .content_table tr td > .a_element, .photo_gallery {
 	font-size: var(--font-size-parargaph);
 	padding: var(--default-rounding);
 	background-color: color-mix(var(--mini-background-colour) var(--mini-background-colour-a), black 0%);
@@ -191,7 +206,7 @@ a:hover {
 				background-color var(--short-transition-time) linear;
 }
 
-.content_table tr td > p:hover {
+.content_table tr td > p:hover, .content_table tr td > .a_element:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.2);
 	background-color: color-mix(var(--mini-background-colour) calc(var(--mini-background-colour-a) * 2), black 0%);
 	/* padding: calc(var(--default-rounding) - 2px);
@@ -565,14 +580,33 @@ header:hover .website_header_blur {
 	position: relative;
 }
 
+.photo_gallery .text_container {
+	padding: 0 var(--default-rounding) 0 var(--default-rounding);
+	overflow:hidden;/* overflow:hidden; */
+	line-height: normal;
+}
+
 .img_container img {
 	box-shadow: none !important;
+}
+
+.img_container img:nth-child(2) {
+	position: absolute;
+	margin-left: -100%;
+	z-index: -1;
+}
+
+.img_container img:nth-last-child(2) {
+	transition: opacity var(--short-transition-time);
+}
+
+.img_container img:nth-last-child(2):hover {
+	opacity: 0%;
 }
 
 .photo_gallery .img_container:nth-child(1) {
 	animation: 12s linear -12s infinite forwards image-expand-shrink-first-animation;
 	height: auto;
-
 }
 
 .photo_gallery .img_container:nth-child(2) {
@@ -582,6 +616,21 @@ header:hover .website_header_blur {
 
 .photo_gallery .img_container:nth-child(3) {
 	animation: 12s linear -5s infinite forwards image-expand-shrink-animation;
+	height: 0;
+}
+
+.photo_gallery_slow .img_container:nth-child(1) {
+	animation: 24s linear -24s infinite forwards image-expand-shrink-first-animation;
+	height: auto;
+}
+
+.photo_gallery_slow .img_container:nth-child(2) {
+	animation: 24s linear -18s infinite forwards image-expand-shrink-animation;
+	height: 0;
+}
+
+.photo_gallery_slow .img_container:nth-child(3) {
+	animation: 24s linear -10s infinite forwards image-expand-shrink-animation;
 	height: 0;
 }
 
