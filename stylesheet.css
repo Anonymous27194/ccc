@@ -71,6 +71,8 @@
 :root {
 	interpolate-size: allow-keywords;
 
+	--touchscreen-touch-click-radius: 3vw;
+
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
 	--intro-text-vw-length: 80vw;
 	--default-rounding: calc(0.75 * 1vw + 0.25 * 25px);
@@ -81,7 +83,7 @@
 	--drop-shadow-distance: calc((0.3vw + 4px) / 2);
 	--outer-spacing: calc(var(--default-rounding) * 0.5);
 
-	--font-size-header-item: calc(36px * 0.1 + 1.5vw * 0.9);
+	--font-size-header-item: calc(36px * 0.1 + 1.8vw * 0.9);
 	--font-size-title: calc(3vw * 0.75 + 40px * 0.25);
 	--font-size-parargaph: calc(2vw * 0.75 + 25px * 0.25);
 
@@ -89,11 +91,12 @@
 	--background-colour-a: 90%;
 	--mini-background-colour: rgb(0, 0, 0);
 	--mini-background-colour-a: 20%;
-	--dropdown-content-bg-colour: rgba(0, 0, 0, 0.8);
-	--dropdown-content-bg-hover-colour: rgba(64, 64, 64, 0.8);
+	--dropdown-content-bg-colour: rgba(0, 0, 0, 0.3);
+	--dropdown-content-bg-hover-colour: rgba(64, 64, 64, 0.3);
 
 	--default-text-colour: rgb(255, 255, 255);
 	--top-link-colour: rgb(200, 250, 255);
+	--top-dropdown-colour: rgb(250, 250, 200);
 	--top-link-hover-colour: white;
 	--highlight-text-colour: orange;
 	--link-hover-colour: lightgray;
@@ -112,15 +115,16 @@
 		--background-colour-a: 50%;
 		--mini-background-colour: lightblue;
 		--mini-background-colour-a: 30%;
-		--dropdown-content-bg-colour: rgba(255, 255, 255, 0.8);
-		--dropdown-content-bg-hover-colour: rgba(191, 191, 191, 0.8);
+		--dropdown-content-bg-colour: rgba(255, 255, 255, 0.5);
+		--dropdown-content-bg-hover-colour: rgba(191, 191, 191, 0.5);
 
 		--default-text-colour: rgb(0, 0, 0);
 		--top-link-colour: black;
+		--top-dropdown-colour: navy;
 		--top-link-hover-colour: slategray;
 		--highlight-text-colour: darkgreen;
 		--link-hover-colour: slategray;
-		--secondary-highlight-text-colour: blue;
+		--secondary-highlight-text-colour: navy;
 	}
 }
 
@@ -140,25 +144,14 @@ body {
 
 
 a {
-	text-decoration: none;
+	/*text-decoration: none;*/
 	color:var(--highlight-text-colour);
 	transition: color var(--short-transition-time);
 }
 
 a:hover {
 	color: var(--link-hover-colour);
-}
-
-.a_element {
-	/* Fix default styling issues caused by default values of properties; change to <p> element defaults*/
-	/* DO NOT MOVE BELOW CUSTOM STYLES!!*/
-	display: block;
-	margin-top: 1em;
-	margin-bottom: 1em;
-	margin-left: 0;
-	margin-right: 0;
-
-	color: var(--secondary-highlight-text-colour);
+	text-decoration: none;
 }
 
 .on_background {
@@ -195,7 +188,7 @@ a:hover {
 	width: 100%;
 }
 
-.content_table tr td > p, .content_table tr td > .a_element, .photo_gallery {
+.content_table tr td > p, .content_table tr td > .button_link, .photo_gallery {
 	font-size: var(--font-size-parargaph);
 	padding: var(--default-rounding);
 	background-color: color-mix(var(--mini-background-colour) var(--mini-background-colour-a), black 0%);
@@ -206,12 +199,14 @@ a:hover {
 				background-color var(--short-transition-time) linear;
 }
 
-.content_table tr td > p:hover, .content_table tr td > .a_element:hover {
+.content_table tr td > p:hover, .content_table tr td > .button_link:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.2);
 	background-color: color-mix(var(--mini-background-colour) calc(var(--mini-background-colour-a) * 2), black 0%);
 	/* padding: calc(var(--default-rounding) - 2px);
 	border: 2px solid color-mix(var(--highlight-text-colour), transparent 80%); */
 }
+
+
 
 
 .content_table tr td img {
@@ -220,15 +215,42 @@ a:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
 
 
-	transition: box-shadow 0.2s linear;	
-
+	transition: box-shadow var(--short-transition-time) linear;	
 }
 
 .content_table tr td img:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 165, 0, 0.2);
 }
 
+.content_table tr td .button_link, .photo_gallery .text_container .button_link {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 0;
+	margin-right: 0;
 
+	text-decoration: none;
+	color: var(--secondary-highlight-text-colour);
+	background-color: color-mix(var(--highlight-text-colour) var(--mini-background-colour-a), black 0%);
+
+	transition: background-color var(--short-transition-time) linear;
+}
+
+.photo_gallery .text_container .button_link {
+	border-radius: var(--default-rounding);
+	padding: var(--default-rounding);
+}
+
+.content_table tr td .button_link:hover, .photo_gallery .text_container .button_link:hover {
+	background-color: color-mix(var(--highlight-text-colour) calc(var(--mini-background-colour-a) / 2), black 0%);
+}
+
+.inside_table tr td .button_link:active {
+	box-shadow: none;
+	margin-top: calc(1em + var(--drop-shadow-distance));
+	margin-bottom: calc(0px - var(--drop-shadow-distance));
+	margin-left: var(--drop-shadow-distance);
+}
 
 .typing_animation_container {
 	margin-top: var(--main-rounding);
@@ -409,12 +431,12 @@ header:hover .website_header_blur {
 
 .website_header_item {
 	white-space: nowrap;
-	padding: calc(var(--default-rounding)/4);
+	padding: var(--header-subitem-rounding);
 	background-color: none;
     color:white;
 	font-size: var(--font-size-header-item);
 	
-	border-radius: calc(var(--default-rounding) / 2);
+	border-radius: var(--header-item-rounding);
 	max-height: fit-content;
 	max-width: 20vw;
 
@@ -447,6 +469,11 @@ header:hover .website_header_blur {
 .website_header_blankspace {
     width: 100%;
 	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.website_header_item_selected {
+	border: 1px dashed color-mix(var(--default-text-colour) var(--mini-background-colour-a), black 0%);
+	background-color: color-mix(var(--highlight-text-colour) calc(var(--mini-background-colour-a)/2), black 0%);
 }
 
 .logo {
@@ -483,12 +510,14 @@ header:hover .website_header_blur {
 	color: var(--top-link-colour);
 	display:block;
 	transition: var(--short-transition-time);
+	padding-left: var(--header-subitem-rounding);
+	padding-right: var(--header-subitem-rounding);
 }
 
 .hover_link:hover {
 	color: var(--top-link-hover-colour);
-	padding-left: var(--header-subitem-rounding);
-	padding-right: var(--header-subitem-rounding);
+	padding-left: var(--header-item-rounding);
+	padding-right: var(--header-item-rounding);
 }
 
 .hover_link:active {
@@ -502,13 +531,16 @@ header:hover .website_header_blur {
 
 .dropdown {
 	text-decoration: none;
-	color: var(--top-link-colour);
+	color: var(--top-dropdown-colour);
 	display: inline-block;
 	overflow: visible;
+	transition: var(--short-transition-time);
 }
 
 .dropdown:hover {
 	color: var(--top-link-hover-colour);
+	padding-left: calc(var(--header-subitem-rounding) * 2);
+	padding-right: calc(var(--header-subitem-rounding) * 2);
 }
 
 .dropdown-content {
@@ -527,8 +559,21 @@ header:hover .website_header_blur {
 .dropdown:hover .dropdown-content {
 	display: block;
 	opacity: 100%;
-
+	backdrop-filter: blur(2px);
+	
 	animation: var(--quick-transition-time) linear drop-down-expand-animation forwards;
+}
+
+.dropdown:hover .dropdown-content::before {
+	content: "";
+	display: block;
+	height: var(--header-item-rounding);
+}
+
+@media (hover:none) {
+	.dropdown:hover .dropdown-content::before {
+		height: calc(var(--header-item-rounding) + var(--touchscreen-touch-click-radius));
+	}
 }
 
 .dropdown-content:hover {
@@ -633,6 +678,8 @@ header:hover .website_header_blur {
 	animation: 24s linear -10s infinite forwards image-expand-shrink-animation;
 	height: 0;
 }
+
+
 
 
 
