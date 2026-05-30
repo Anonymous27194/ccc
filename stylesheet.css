@@ -252,6 +252,10 @@ a:hover {
 	margin-left: var(--drop-shadow-distance);
 }
 
+.inside_table tr td .button_link:nth-last-child(1):active {
+	margin-bottom: calc(1em - var(--drop-shadow-distance));
+}
+
 .typing_animation_container {
 	margin-top: var(--main-rounding);
 	/* border:1px solid white; */
