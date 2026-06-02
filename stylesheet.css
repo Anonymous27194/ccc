@@ -38,7 +38,6 @@
 }
 
 @keyframes image-expand-shrink-animation {
-
 	0% {opacity: 0%; height: 0;} /*order: 50; border-color: red;}*/
 	8.33% {opacity: 100%; height: auto;} /*order: 50; border-color: red;}*/
 
@@ -47,9 +46,6 @@
 
 
 	100% {opacity: 0%; height: 0;} /*order: 50; border-color: red;}*/
-	
-
-
 	/* in 1s, stay 3s, out 1s for each; in/out transitions overlap so effective time is halved; 12s total */
 }
 
@@ -64,7 +60,8 @@
 	100% {opacity: 100%; height: auto;} /*order: 50; border-color: red;}*/
 	/* in 1s, stay 3s, out 1s for each; in/out transitions overlap so effective time is halved; 12s total */
 }
-/* Green is order 0, red is order 5, colours animated with order */
+
+
 
 
 
@@ -139,6 +136,7 @@ body {
 	background-image: url(IMG_4121.JPEG);
 	background-size: cover;
 	margin: var(--outer-spacing);
+	border-radius: var(--main-rounding);
 }
 
 
@@ -236,13 +234,24 @@ a:hover {
 	transition: background-color var(--short-transition-time) linear;
 }
 
-.photo_gallery .text_container .button_link {
-	border-radius: var(--default-rounding);
+.photo_gallery .text_container p {
 	padding: var(--default-rounding);
+	margin: 0;
+}
+
+.photo_gallery .text_container .button_link {
+	border-radius: 0 0 var(--default-rounding) var(--default-rounding);
+	padding: var(--default-rounding);
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .content_table tr td .button_link:hover, .photo_gallery .text_container .button_link:hover {
 	background-color: color-mix(var(--highlight-text-colour) calc(var(--mini-background-colour-a) / 2), black 0%);
+}
+
+.inside_table tr td p {
+	margin: 0;
 }
 
 .inside_table tr td .button_link:active {
@@ -616,6 +625,7 @@ header:hover .website_header_blur {
 	padding: 0;
 	height: fit-content;
 	line-height:0;
+	overflow: hidden;
 }
 
 .photo_gallery:hover {
@@ -630,10 +640,10 @@ header:hover .website_header_blur {
 }
 
 .photo_gallery .text_container {
-	padding: 0 var(--default-rounding) 0 var(--default-rounding);
 	overflow:hidden;/* overflow:hidden; */
 	line-height: normal;
 }
+
 
 .img_container img {
 	box-shadow: none !important;
@@ -668,20 +678,40 @@ header:hover .website_header_blur {
 	height: 0;
 }
 
+
+
 .photo_gallery_slow .img_container:nth-child(1) {
 	animation: 24s linear -24s infinite forwards image-expand-shrink-first-animation;
 	height: auto;
 }
+
+/* .photo_gallery_slow .text_container:nth-child(1) {
+	animation: 24s linear -24s infinite forwards image-expand-shrink-first-animation,
+			   24s linear -24s infinite forwards text-expand-shrink-first-animation;
+	height: auto;
+} */
 
 .photo_gallery_slow .img_container:nth-child(2) {
 	animation: 24s linear -18s infinite forwards image-expand-shrink-animation;
 	height: 0;
 }
 
+/* .photo_gallery_slow .text_container:nth-child(2) {
+	animation: 24s linear -18s infinite forwards image-expand-shrink-animation,
+			   24s linear -18s infinite forwards text-expand-shrink-animation;
+	height: 0;
+} */
+
 .photo_gallery_slow .img_container:nth-child(3) {
 	animation: 24s linear -10s infinite forwards image-expand-shrink-animation;
 	height: 0;
 }
+
+/* .photo_gallery_slow .text_container:nth-child(3) {
+	animation: 24s linear -10s infinite forwards image-expand-shrink-animation,
+			   24s linear -10s infinite forwards text-expand-shrink-animation;
+	height: 0;
+} */
 
 
 
