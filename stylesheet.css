@@ -68,7 +68,7 @@
 :root {
 	interpolate-size: allow-keywords;
 
-	--touchscreen-touch-click-radius: 3vw;
+	--click-radius: 0px;
 
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
 	--intro-text-vw-length: 80vw;
@@ -125,6 +125,12 @@
 	}
 }
 
+@media (hover:none) {
+	:root {
+		--click-radius: 10px;
+	}
+}
+
 
 /* THIS OVERRIDES ANYTHING NOT SET TO A SPECIFIC ELEMENT - HIGHER SPECIFICITY */
 * {
@@ -142,7 +148,6 @@ body {
 
 
 a {
-	/*text-decoration: none;*/
 	color:var(--highlight-text-colour);
 	transition: color var(--short-transition-time);
 }
@@ -200,8 +205,6 @@ a:hover {
 .content_table tr td > p:hover, .content_table tr td > .button_link:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.2);
 	background-color: color-mix(var(--mini-background-colour) calc(var(--mini-background-colour-a) * 2), black 0%);
-	/* padding: calc(var(--default-rounding) - 2px);
-	border: 2px solid color-mix(var(--highlight-text-colour), transparent 80%); */
 }
 
 
@@ -403,6 +406,7 @@ a:hover {
 	min-width: calc(100vw - 2*var(--main-rounding) - 2*var(--outer-spacing));
 	height: calc(1cqh + var(--header-rounding) - var(--header-item-rounding));
 	background-image: url("geometric_dark.jpg");
+	background-size:cover;
 	/*display: block;*/
 	display:flex;
 
@@ -450,8 +454,8 @@ header:hover .website_header_blur {
 	font-size: var(--font-size-header-item);
 	
 	border-radius: var(--header-item-rounding);
-	max-height: fit-content;
-	max-width: 20vw;
+	height: fit-content;
+	max-width: 16vw;
 
 	display:inline-block;
 	overflow:hidden;
@@ -556,7 +560,7 @@ header:hover .website_header_blur {
 	padding-right: calc(var(--header-subitem-rounding) * 2);
 }
 
-.dropdown-content {
+.dropdown_content {
 	display: none;
 	position: absolute;
 	overflow: hidden;
@@ -564,36 +568,46 @@ header:hover .website_header_blur {
 	padding: calc(var(--default-rounding)/4);
 	z-index: 1;
 	border-radius: var(--header-item-rounding);
-	top: calc(var(--header-rounding) + 2*var(--header-item-rounding) + 1px);
+	top: calc(var(--header-rounding) + var(--font-size-header-item) + var(--click-radius));
+	border: calc(2*var(--header-subitem-rounding)) solid rgba(0, 0, 0, 0);
 
 	transition: background-color var(--short-transition-time) linear;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown_spacer {
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0);
+	height: 0;
+	line-height: 0;
+}
+
+.dropdown:hover .dropdown_spacer {
+	height: calc(2*var(--header-item-rounding));
+	width: 16vw;
+}
+
+.dropdown:hover .dropdown_content {
 	display: block;
 	opacity: 100%;
-	backdrop-filter: blur(2px);
-	
+	backdrop-filter: blur(2px);	
 	animation: var(--quick-transition-time) linear drop-down-expand-animation forwards;
 }
 
-.dropdown:hover .dropdown-content::before {
+/* .dropdown:hover .dropdown_content::before {
 	content: "";
 	display: block;
 	height: var(--header-item-rounding);
-}
+	backdrop-filter: none;
+	background-color: white;
+} */
 
-@media (hover:none) {
-	.dropdown:hover .dropdown-content::before {
-		height: calc(var(--header-item-rounding) + var(--touchscreen-touch-click-radius));
-	}
-}
 
-.dropdown-content:hover {
+
+.dropdown_content:hover {
 	background-color: var(--dropdown-content-bg-hover-colour);
 }
 
-.dropdown-content .hover_link {
+.dropdown_content .hover_link {
 	border-radius: var(--header-subitem-rounding);
 	padding-left: calc(var(--header-subitem-rounding) / 2);
 	padding-right: calc(var(--header-subitem-rounding));
@@ -605,7 +619,7 @@ header:hover .website_header_blur {
 				padding-right var(--short-transition-time) linear;
 }
 
-.dropdown-content .hover_link:hover {
+.dropdown_content .hover_link:hover {
 	padding-left: calc(var(--header-subitem-rounding));
 	padding-right: calc(var(--header-subitem-rounding) / 2);
 	background-color: var(--dropdown-content-bg-hover-colour);
@@ -618,10 +632,6 @@ header:hover .website_header_blur {
 }
 
 .photo_gallery {
-	/*min-height: calc(30vw);
-	max-height: calc(30vw);
-	/* display: flex; */
-	/* flex-direction: row; */
 	padding: 0;
 	height: fit-content;
 	line-height:0;
@@ -630,8 +640,10 @@ header:hover .website_header_blur {
 
 .photo_gallery:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px color-mix(var(--highlight-text-colour), transparent 80%);
-	display: flex;
-	flex-direction: column;
+}
+
+.photo_gallery_slow:hover {
+	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px color-mix(var(--default-text-colour), transparent 80%);
 }
 
 .photo_gallery .img_container {
