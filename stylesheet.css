@@ -27,14 +27,14 @@
 }
 
 @keyframes drop-down-expand-animation {
-	0%   {display: block;
+	0%   {display: flex;
 		  opacity: 0%;
 		  height:  0;
-		  width:   0;}
-	100% {display: block;
+		  /* width:   0;*/}
+	100% {display: flex;
 		  opacity: 100%;
 		  height:  auto;
-		  width:   auto;}
+		  /* width:   auto;*/}
 }
 
 @keyframes image-expand-shrink-animation {
@@ -68,7 +68,7 @@
 :root {
 	interpolate-size: allow-keywords;
 
-	--click-radius: 0px;
+	--click-radius: calc(var(--header-rounding) - var(--header-item-rounding));
 
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
 	--intro-text-vw-length: 80vw;
@@ -127,9 +127,10 @@
 
 @media (hover:none) {
 	:root {
-		--click-radius: 10px;
+		--click-radius: 20px;
 	}
 }
+
 
 
 /* THIS OVERRIDES ANYTHING NOT SET TO A SPECIFIC ELEMENT - HIGHER SPECIFICITY */
@@ -141,10 +142,8 @@
 body {
 	background-image: url(IMG_4121.JPEG);
 	background-size: cover;
-	margin: var(--outer-spacing);
 	border-radius: var(--main-rounding);
 }
-
 
 
 a {
@@ -274,22 +273,6 @@ a:hover {
 	width: fit-content;
 }
 
-/* .typing_animation_container::after {
-	content: "TEST";
-	background-image: url("geometric_dark.jpg");
-	width: calc(var(--intro-text-vw-length) + 2*var(--default-rounding) + 1px);
-	position: absolute;
-    top: var(--main-rounding);
-	margin-left: 1px;
-	font-size: 80px;
-	opacity: 50%;
-	z-index: -1;
-}
-
-.typing_animation_container.hover::after {
-	opacity: 100%;
-} */
-
 .typing_animation_box {
 
 	border: 1px solid var(--highlight-text-colour);
@@ -376,10 +359,10 @@ a:hover {
 .website_header {
 	padding: calc(var(--header-rounding) - var(--header-item-rounding));
 	border-radius: var(--header-rounding);
-	min-width: calc(100vw - 2*var(--main-rounding) - 2*var(--outer-spacing));
+	width: calc(100vw - 2*var(--main-rounding) - 2*var(--outer-spacing) - 2px - 10px); /*100vw-2px, then make change, 6.5vw or 104px at regular size*/
 	height: calc(1cqh + var(--header-rounding) - var(--header-item-rounding));
-	/*background-image: url("geometric_dark.jpg");*/
-	/*display: block;*/
+	
+
 	display:flex;
 
 	align-items: center;
@@ -396,14 +379,14 @@ a:hover {
 }
 
 .website_header:hover {
-	box-shadow: 0 0 0 calc(var(--drop-shadow-distance) / 2) color-mix(in srgb, var(--default-text-colour), transparent 50%);
+	box-shadow: 0 0 0 1px color-mix(in srgb, var(--default-text-colour), transparent 50%);
 	border: solid 1px rgba(0, 0, 0, 0) /* Transparent*/
 }
 
 .website_header_background {
 	padding: calc(var(--header-rounding) - var(--header-item-rounding));
 	border-radius: var(--header-rounding);
-	min-width: calc(100vw - 2*var(--main-rounding) - 2*var(--outer-spacing));
+	min-width: calc(100vw - 2*var(--main-rounding) - 2*var(--outer-spacing) - 2px - 10px);
 	height: calc(1cqh + var(--header-rounding) - var(--header-item-rounding));
 	background-image: url("geometric_dark.jpg");
 	background-size:cover;
@@ -423,7 +406,7 @@ header:hover .website_header_background {
 }
 
 .website_header_blur {
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(0px);
 	height: calc(1cqh + var(--outer-spacing) + var(--main-rounding) + 2*var(--header-rounding));
 
 	/*border-radius: var(--header-rounding);*/
@@ -442,7 +425,7 @@ header:hover .website_header_background {
 
 header:hover .website_header_blur {
 	border-bottom-color: var(--highlight-text-colour);
-	backdrop-filter: blur(20px);
+	backdrop-filter: blur(0px);
 	box-shadow: 0 0 20vh 20vh color-mix(var(--background-colour) calc(var(--background-colour-a) * 0.5), black 0%);
 }
 
@@ -560,46 +543,57 @@ header:hover .website_header_blur {
 	padding-right: calc(var(--header-subitem-rounding) * 2);
 }
 
-.dropdown_content {
+/* .dropdown::after {
+	anchor-name: --test-anchor;
+	content: "test anchor";
+	border: 1px solid white;
+	position: absolute;
+} */
+
+.website_header_separator {
+	anchor-name: --test-anchor;
+}
+
+.dropdown .dropdown_content {
 	display: none;
 	position: absolute;
 	overflow: hidden;
+
 	background-color: var(--dropdown-content-bg-colour);
-	padding: calc(var(--default-rounding)/4);
+	padding: 0;
 	z-index: 1;
 	border-radius: var(--header-item-rounding);
-	top: calc(var(--header-rounding) + var(--font-size-header-item) + var(--click-radius));
-	border: calc(2*var(--header-subitem-rounding)) solid rgba(0, 0, 0, 0);
+	
+	position-anchor: --test-anchor;
+	left: anchor(right);
+	top: calc(anchor(bottom) + var(--header-subitem-rounding) + var(--click-radius));
+	right: 0px;
 
 	transition: background-color var(--short-transition-time) linear;
 }
 
 .dropdown_spacer {
 	position: absolute;
-	background-color: rgba(0, 0, 0, 0);
-	height: 0;
+	background-color: rgba(255, 255, 255, 0);
 	line-height: 0;
 }
 
 .dropdown:hover .dropdown_spacer {
-	height: calc(2*var(--header-item-rounding));
-	width: 16vw;
+	height: calc(2*var(--header-item-rounding) + var(--click-radius));
+	position-anchor: --test-anchor;
+	top: anchor(bottom);
+	left: anchor(right);
+	right: 0px;
 }
 
 .dropdown:hover .dropdown_content {
-	display: block;
+	display: flex;
+	justify-content: space-around;
+
 	opacity: 100%;
-	backdrop-filter: blur(2px);	
+	backdrop-filter: blur(2px);
 	animation: var(--quick-transition-time) linear drop-down-expand-animation forwards;
 }
-
-/* .dropdown:hover .dropdown_content::before {
-	content: "";
-	display: block;
-	height: var(--header-item-rounding);
-	backdrop-filter: none;
-	background-color: white;
-} */
 
 
 
@@ -608,22 +602,28 @@ header:hover .website_header_blur {
 }
 
 .dropdown_content .hover_link {
+	display: inline-block;
+	
 	border-radius: var(--header-subitem-rounding);
-	padding-left: calc(var(--header-subitem-rounding) / 2);
-	padding-right: calc(var(--header-subitem-rounding));
+	padding: var(--header-item-rounding);
+	margin: var(--header-item-rounding) var(--header-subitem-rounding);
+	
 
-	border: 1px solid rgba(0, 0, 0, 0);
+	border: 1px dashed color-mix(var(--default-text-colour), transparent 80%);
+
+	width: 50%;
 	transition: border var(--short-transition-time) linear,
 	            background-color var(--short-transition-time) linear,
 				padding-left var(--short-transition-time) linear,
-				padding-right var(--short-transition-time) linear;
+				padding-right var(--short-transition-time) linear,
+				width var(--short-transition-time) linear;
 }
 
 .dropdown_content .hover_link:hover {
-	padding-left: calc(var(--header-subitem-rounding));
-	padding-right: calc(var(--header-subitem-rounding) / 2);
 	background-color: var(--dropdown-content-bg-hover-colour);
-	border: 1px solid color-mix(var(--highlight-text-colour), transparent 20%);
+	border: 1px solid color-mix(var(--default-text-colour), transparent 60%);
+
+	width: 51%;
 }
 
 .image_filter {
