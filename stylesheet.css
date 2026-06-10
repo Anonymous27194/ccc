@@ -68,7 +68,8 @@
 :root {
 	interpolate-size: allow-keywords;
 
-	--click-radius: calc(var(--header-rounding) - var(--header-item-rounding));
+	--click-radius: calc(var(--header-rounding) - var(--header-item-rounding)); /* Reduces ability to click things */
+	--pointer-error: 5vh; /* Increases ability to hover over things */
 
 	--intro-text-length: 43; /* Text is the string "Welcome to Centennial Chess Club's website!" which has 43 chars*/
 	--intro-text-vw-length: 80vw;
@@ -128,6 +129,7 @@
 @media (hover:none) {
 	:root {
 		--click-radius: 20px;
+		--pointer-error: 0;
 	}
 }
 
@@ -543,15 +545,8 @@ header:hover .website_header_blur {
 	padding-right: calc(var(--header-subitem-rounding) * 2);
 }
 
-/* .dropdown::after {
-	anchor-name: --test-anchor;
-	content: "test anchor";
-	border: 1px solid white;
-	position: absolute;
-} */
-
 .website_header_separator {
-	anchor-name: --test-anchor;
+	anchor-name: --header-separator-anchor;
 }
 
 .dropdown .dropdown_content {
@@ -564,7 +559,7 @@ header:hover .website_header_blur {
 	z-index: 1;
 	border-radius: var(--header-item-rounding);
 	
-	position-anchor: --test-anchor;
+	position-anchor: --header-separator-anchor;
 	left: anchor(right);
 	top: calc(anchor(bottom) + var(--header-subitem-rounding) + var(--click-radius));
 	right: 0px;
@@ -580,7 +575,7 @@ header:hover .website_header_blur {
 
 .dropdown:hover .dropdown_spacer {
 	height: calc(2*var(--header-item-rounding) + var(--click-radius));
-	position-anchor: --test-anchor;
+	position-anchor: --header-separator-anchor;
 	top: anchor(bottom);
 	left: anchor(right);
 	right: 0px;
@@ -589,6 +584,8 @@ header:hover .website_header_blur {
 .dropdown:hover .dropdown_content {
 	display: flex;
 	justify-content: space-around;
+
+	overflow: visible;
 
 	opacity: 100%;
 	backdrop-filter: blur(2px);
@@ -600,6 +597,7 @@ header:hover .website_header_blur {
 .dropdown_content:hover {
 	background-color: var(--dropdown-content-bg-hover-colour);
 }
+
 
 .dropdown_content .hover_link {
 	display: inline-block;
@@ -619,11 +617,27 @@ header:hover .website_header_blur {
 				width var(--short-transition-time) linear;
 }
 
+.dropdown_content .hover_link:nth-child(1) {
+	anchor-name: --dropdown-link-anchor;
+}
+
 .dropdown_content .hover_link:hover {
 	background-color: var(--dropdown-content-bg-hover-colour);
 	border: 1px solid color-mix(var(--default-text-colour), transparent 60%);
 
 	width: 51%;
+}
+
+.dropdown_content::after {
+	position-anchor: --dropdown-link-anchor;
+	top: anchor(bottom);
+	left: anchor(left);
+	/* background-color: white; */
+	height: var(--pointer-error);
+	width: 100%;
+	position: absolute;
+	content: "";
+	display: block;
 }
 
 .image_filter {
