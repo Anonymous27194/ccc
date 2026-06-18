@@ -8,6 +8,8 @@
 
 </head>
 
+<script src="darklightmode.js"></script>
+
 <body>
     <div class="on_background">
         <header>
@@ -39,12 +41,29 @@
                     Quick Links
                     <div class="dropdown_spacer"></div>
                     <div class="dropdown_content">
-                        <a class="hover_link" href="https://lichess.org/team/centennial-chess-club">Centennial Lichess</a>
-                        <a class="hover_link" href="https://lichess.org/team/sd43-chess">SD43 Lichess</a>
+                        <div class="dropdown_row">
+                            <a class="hover_link">Centennial Chess Website <span class="emphasize">(here)</span></a>
+                            <a class="hover_link" href="https://lichess.org/team/centennial-chess-club">Centennial Lichess</a>
+                        </div>
+                        <div class="dropdown_row">
+                            <a class="hover_link" href="https://google.ca">SD43JCA Discord</a>
+                            <a class="hover_link" href="https://lichess.org/team/sd43-chess">SD43 Lichess</a>
+                            <a class="hover_link" href="https://www.chess.com/club/sd43-chess-club">SD43 Chess.com</a>
+                        </div>
+                        <div class="dropdown_row">
+                            <a class="hover_link" href="https://discord.gg/QcfyNsRVap">BCJCA Discord</a>
+                            <a class="hover_link" href="https://www.bcjca.ca/">BCJCA Website</a>
+                        </div>
                     </div>
 				</div>
             </div>
             <div class="website_header_blur"></div>
+            <div class="darkmode_toggle light" onclick="switchToLight()">
+                Light mode
+            </div>
+            <div class="darkmode_toggle dark hide" onclick="switchToDark()">
+                Dark mode
+            </div>
         </header>
 
         <div class="content">
