@@ -114,7 +114,7 @@
 } */
 
 .darkmode {
-	
+	--brightness-change: -0.1;
 
 	--background-colour: rgb(0, 8, 16);
 	--background-colour-a: 90%;
@@ -134,6 +134,7 @@
 
 
 .lightmode { /* NEW lightmode that can be applied via javascript - DO NOT DELETE OLD ONE WHEN DONE*/
+	--brightness-change: 0.1;
 	--background-colour: rgb(255, 255, 255);
 	--background-colour-a: 50%;
 	--mini-background-colour: lightblue;
@@ -162,6 +163,10 @@
 * {
 	font-family: "Trebuchet MS";
 	color:var(--default-text-colour);
+}
+
+::selection {
+	background-color: color-mix(var(--highlight-text-colour) 25%, black 0%);
 }
 
 .hide {
@@ -251,11 +256,16 @@ a:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 255, 255, 0.05);
 
 
-	transition: box-shadow var(--short-transition-time) linear;	
+	transition: box-shadow var(--short-transition-time) linear,
+				filter var(--short-transition-time) linear;
 }
 
 .content_table tr td img:hover {
 	box-shadow: var(--drop-shadow-distance) var(--drop-shadow-distance) 0px 0px rgba(255, 165, 0, 0.2);
+}
+
+.content_table tr td > img:hover {
+	filter: brightness(calc(1 + var(--brightness-change)));
 }
 
 .content_table tr td .button_link, .photo_gallery .text_container .button_link {
@@ -695,7 +705,7 @@ header:hover .website_header_blur {
 	font-size: var(--font-size-header-item);
 	position: fixed;
 	right: 0px;
-	top: calc(1cqh + var(--outer-spacing) + var(--main-rounding) + 2*var(--header-rounding) + 1px);
+	top: calc(1cqh + var(--outer-spacing) + var(--main-rounding) + 2*var(--header-rounding) + 3px);
 	z-index: 11;
 	cursor: pointer;
 	text-align: right;
@@ -704,7 +714,7 @@ header:hover .website_header_blur {
 	backdrop-filter: blur(1.5vw);
 
 	border: 1px color-mix(var(--highlight-text-colour) 50%, black 0%);
-	border-style: none none solid solid;
+	border-style: solid none solid solid;
 	border-radius: 0px 0px 0px var(--header-rounding);
 
 	transition: border var(--short-transition-time) linear,
@@ -718,14 +728,9 @@ header:hover .darkmode_toggle {
 
 .darkmode_toggle:hover {
 	border-color: var(--highlight-text-colour);
+	anchor-name: --toggle-anchor;
 }
 
-/* .darkmode_toggle::before {
-	content: "Dark mode here";
-}
-.darkmode_toggle::after {
-	content: "::after here";
-} */
 
 
 
